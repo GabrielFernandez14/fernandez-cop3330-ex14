@@ -17,8 +17,10 @@ public class App
     // Main function
     public static void main( String[] args )
     {
-        // Declare Wisconsin's tax rate as a constant
+        // Declare constants and strings
         final double WI_TAX = 5.5;
+        String wi = "wi";
+        String wisconsin = "wisconsin";
 
         // Prompt user for input of the order amount and state
         System.out.println("What is the order amount?");
@@ -37,9 +39,10 @@ public class App
         double tax = order * (WI_TAX / 100);
 
         // Check if the inputted state is Wisconsin, if it is, print the subtotal
-        // and tax in addition to the total
-        // If any other state, only print the total
-        String msg = state.equals("WI") || state.equals("Wisconsin")
+        // and tax in addition to the total using a ternary operator, if it's any
+        // other state, only print the total
+        String msg = wi.equals(state.toLowerCase())
+                || wisconsin.equals(state.toLowerCase())
                 ? "The subtotal is $" + df.format(order) + ".\n" + "The tax is $"
                 + tax + ".\n" + "The total is $" + df.format((order + tax)) + "."
                 : "The total is $" + df.format(order) + ".";
