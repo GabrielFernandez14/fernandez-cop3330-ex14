@@ -34,7 +34,7 @@ public class App
         df.setRoundingMode(RoundingMode.CEILING);
 
         // Calculate the tax
-        double tax = 10 * (WI_TAX / 100);
+        double tax = order * (WI_TAX / 100);
 
         // Check if the inputted state is Wisconsin, if it is, print the subtotal
         // and tax in addition to the total
