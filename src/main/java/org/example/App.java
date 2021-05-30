@@ -36,19 +36,15 @@ public class App
         // Calculate the tax
         double tax = 10 * (WI_TAX / 100);
 
-        // If the inputted state was Wisconsin, print the subtotal and the tax
-        // and update the order by adding the tax
-        if (state.equals("WI") || state.equals("Wisconsin")) {
-            System.out.println("The subtotal is $" + df.format(order) + ".\n"
-                                + "The tax is $" + tax + ".");
+        // Check if the inputted state is Wisconsin, if it is, print the subtotal
+        // and tax in addition to the total
+        // If any other state, only print the total
+        String msg = state.equals("WI") || state.equals("Wisconsin")
+                ? "The subtotal is $" + df.format(order) + ".\n" + "The tax is $"
+                + tax + ".\n" + "The total is $" + df.format((order + tax)) + "."
+                : "The total is $" + df.format(order) + ".";
 
-            // Update the order to include the WI tax
-            order = order + tax;
-        }
-
-        // Print the total, if the state was WI, then the subtotal and tax have been
-        // printed by this point, and the order has been updated to include the tax
-        // If the state wasn't WI, the order was never updated and so the program works
-        System.out.println("The total is $" + df.format(order) + ".");
+        // Print the output message
+        System.out.println(msg);
     }
 }
