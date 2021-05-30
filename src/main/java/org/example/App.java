@@ -19,6 +19,7 @@ public class App
     {
         // Declare constants and strings
         final double WI_TAX = 5.5;
+        double tax = 0;
         String wi = "wi";
         String wisconsin = "wisconsin";
 
@@ -35,19 +36,26 @@ public class App
         DecimalFormat df = new DecimalFormat("0.00");
         df.setRoundingMode(RoundingMode.CEILING);
 
-        // Calculate the tax
-        double tax = order * (WI_TAX / 100);
 
-        // Check if the inputted state is Wisconsin, if it is, print the subtotal
-        // and tax in addition to the total using a ternary operator, if it's any
-        // other state, only print the total
-        String msg = wi.equals(state.toLowerCase())
-                || wisconsin.equals(state.toLowerCase())
-                ? "The subtotal is $" + df.format(order) + ".\n" + "The tax is $"
-                + tax + ".\n" + "The total is $" + df.format((order + tax)) + "."
-                : "The total is $" + df.format(order) + ".";
+        // Check if the inputted state is Wisconsin, if it is, update the tax
+        // and print the additional output
+        if (wi.equals(state.toLowerCase()) ||
+                wisconsin.equals(state.toLowerCase())) {
 
-        // Print the output message
-        System.out.println(msg);
+            tax = order * (WI_TAX / 100);
+            wisconsinOutput(order, tax);
+        }
+
+        // Print the total
+        System.out.println("The total is $" + df.format(order + tax) + ".");
+    }
+
+    // Prints the subtotal and the tax if the user inputted Wisconsin
+    public static void wisconsinOutput(double order, double tax) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setRoundingMode(RoundingMode.CEILING);
+
+        System.out.println("The subtotal is $" + df.format(order) + ".\n"
+                            + "The tax is $" + df.format(tax) + ".");
     }
 }
